@@ -4,6 +4,10 @@ import { LeapCoin } from "../typechain-types";
 import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
 
 describe("LeapCoin", async () => {
+    const STREAMER_LEAP_REVENUE = ethers.toBigInt(0);
+    const LIQUIDITY_PROVIDER_LEAP_REVENUE = ethers.toBigInt(1);
+    const INCENTIVE_LEAP_REVENUE = ethers.toBigInt(2);
+
     let token: LeapCoin;
     let supply: bigint;
     let decimals: bigint;
@@ -34,16 +38,25 @@ describe("LeapCoin", async () => {
 
     it("Should update claim rewards correctly", async () => {
         expect(await token.calculateStreamersClaimRights(deployer)).to.equal(0, "Deployer claim rights (streamer) is incorrect before update");
-        await token.updateStreamerClaimRights(deployer);
+        const streamerUpdateResponse = await token.updateStreamerClaimRights(deployer);
         expect(await token.calculateStreamersClaimRights(deployer)).to.equal(ethers.parseUnits("1001", decimals), "Deployer claim rights (streamer) is incorrect after update");
 
+        // Events
+        await expect(streamerUpdateResponse).to.emit(token, "ClaimRightsUpdated").withArgs(await deployer.getAddress(), ethers.parseUnits("1001", decimals), STREAMER_LEAP_REVENUE);
+
         expect(await token.calculateLiquidityProvidersClaimRights(deployer)).to.equal(0, "Deployer claim rights (liquidity provider) is incorrect before update");
-        await token.updateLiquidityProviderClaimRights(deployer);
+        const liquidityProviderUpdateResponse = await token.updateLiquidityProviderClaimRights(deployer);
         expect(await token.calculateLiquidityProvidersClaimRights(deployer)).to.equal(ethers.parseUnits("1002", decimals), "Deployer claim rights (liquidity provider) is incorrect after update");
 
+        // Events
+        await expect(liquidityProviderUpdateResponse).to.emit(token, "ClaimRightsUpdated").withArgs(await deployer.getAddress(), ethers.parseUnits("1002", decimals), LIQUIDITY_PROVIDER_LEAP_REVENUE);
+
         expect(await token.calculateIncentiveClaimRights(deployer)).to.equal(0, "Deployer claim rights (liquidity provider) is incorrect before update");
-        await token.updateIncentiveClaimRights(deployer);
+        const incentiveUpdateResponse = await token.updateIncentiveClaimRights(deployer);
         expect(await token.calculateIncentiveClaimRights(deployer)).to.equal(ethers.parseUnits("1003", decimals), "Deployer claim rights (liquidity provider) is incorrect after update");
+
+        // Events
+        await expect(incentiveUpdateResponse).to.emit(token, "ClaimRightsUpdated").withArgs(await deployer.getAddress(), ethers.parseUnits("1003", decimals), INCENTIVE_LEAP_REVENUE);
     });
 
     it("Should claim rewards correctly", async () => {
@@ -54,10 +67,16 @@ describe("LeapCoin", async () => {
         await token.updateLiquidityProviderClaimRights(deployer);
         await token.updateIncentiveClaimRights(deployer);
 
-        await token.claimAllRights();
+        const claimAllResponse = await token.claimAllRights();
 
         expect(await token.balanceOf(await token.getAddress())).to.equal(supply - ethers.parseUnits("3006", decimals), "Contract balance is incorrect after claim");
         expect(await token.balanceOf(await deployer.getAddress())).to.equal(ethers.parseUnits("3006", decimals), "Deployer balance is incorrect after claim");
+
+        // Events
+        await expect(claimAllResponse).to.emit(token, "Claim").withArgs(await deployer.getAddress(), ethers.parseUnits("1001", decimals), STREAMER_LEAP_REVENUE);
+        await expect(claimAllResponse).to.emit(token, "Claim").withArgs(await deployer.getAddress(), ethers.parseUnits("1002", decimals), LIQUIDITY_PROVIDER_LEAP_REVENUE);
+        await expect(claimAllResponse).to.emit(token, "Claim").withArgs(await deployer.getAddress(), ethers.parseUnits("1003", decimals), INCENTIVE_LEAP_REVENUE);
+        await expect(claimAllResponse).to.emit(token, "Transfer").withArgs(await token.getAddress(), await deployer.getAddress(), ethers.parseUnits("3006", decimals));
     });
 
     it("Should error when claiming rewards without rights", async () => {

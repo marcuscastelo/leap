@@ -23,8 +23,8 @@ contract LeapCoin is ERC20, Ownable {
 
     mapping (address => mapping (ClaimType => ClaimRights[])) public claimRights_;
 
-    event ClaimRightUpdated(address indexed account, uint256 amount, ClaimType claimType);
-    event ReserveClaim(address indexed account, uint256 amount, ClaimType claimType);
+    event ClaimRightsUpdated(address indexed account, uint256 amount, ClaimType claimType);
+    event Claim(address indexed account, uint256 amount, ClaimType claimType);
 
     function adminTransfer(address _to, uint256 _value) external onlyOwner {
         require(balances_[address(this)] >= _value, "LeapCoin: transfer amount exceeds balance");
@@ -43,7 +43,7 @@ contract LeapCoin is ERC20, Ownable {
         // Mock: just add 1000 LEAP to the account
         uint amount = 1001 * 10 ** 18;
         claimRights_[_account][ClaimType.STREAMER_LEAP_REVENUE].push(ClaimRights(amount, block.timestamp + 1 days));
-        emit ClaimRightUpdated(_account, amount, ClaimType.STREAMER_LEAP_REVENUE);
+        emit ClaimRightsUpdated(_account, amount, ClaimType.STREAMER_LEAP_REVENUE);
     }
 
     function updateLiquidityProviderClaimRights(address _account) external {
@@ -55,7 +55,7 @@ contract LeapCoin is ERC20, Ownable {
         // Mock: just add 1000 LEAP to the account
         uint amount = 1002 * 10 ** 18;
         claimRights_[_account][ClaimType.LIQUIDITY_PROVIDER_LEAP_REVENUE].push(ClaimRights(amount, block.timestamp + 1 days));
-        emit ClaimRightUpdated(_account, amount, ClaimType.LIQUIDITY_PROVIDER_LEAP_REVENUE);
+        emit ClaimRightsUpdated(_account, amount, ClaimType.LIQUIDITY_PROVIDER_LEAP_REVENUE);
     }
 
     function updateIncentiveClaimRights(address _account) external {
@@ -67,7 +67,7 @@ contract LeapCoin is ERC20, Ownable {
         // Mock: just add 1000 LEAP to the account
         uint amount = 1003 * 10 ** 18;
         claimRights_[_account][ClaimType.LEAP_INCENTIVE].push(ClaimRights(amount, block.timestamp + 1 days));
-        emit ClaimRightUpdated(_account, amount, ClaimType.LEAP_INCENTIVE);
+        emit ClaimRightsUpdated(_account, amount, ClaimType.LEAP_INCENTIVE);
     }
 
 
@@ -118,9 +118,9 @@ contract LeapCoin is ERC20, Ownable {
         delete claimRights_[account][ClaimType.LIQUIDITY_PROVIDER_LEAP_REVENUE];
         delete claimRights_[account][ClaimType.LEAP_INCENTIVE];
 
-        emit ReserveClaim(account, streamerLeap, ClaimType.STREAMER_LEAP_REVENUE);
-        emit ReserveClaim(account, liquidityProviderLeap, ClaimType.LIQUIDITY_PROVIDER_LEAP_REVENUE);
-        emit ReserveClaim(account, incentiveLeap, ClaimType.LEAP_INCENTIVE);
+        emit Claim(account, streamerLeap, ClaimType.STREAMER_LEAP_REVENUE);
+        emit Claim(account, liquidityProviderLeap, ClaimType.LIQUIDITY_PROVIDER_LEAP_REVENUE);
+        emit Claim(account, incentiveLeap, ClaimType.LEAP_INCENTIVE);
         emit Transfer(address(this), account, amountToClaim);
     }
 }
