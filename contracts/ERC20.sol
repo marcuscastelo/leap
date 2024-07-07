@@ -4,11 +4,11 @@ pragma solidity ^0.8.19;
 import "./IERC20.sol";
 
 contract ERC20 is IERC20 {
-    string public name_;
-    string public symbol_;
-    uint8 public decimals_;
-    uint256 public totalSupply_;
-    address public initialAddress_;
+    string public name;
+    string public symbol;
+    uint8 public decimals;
+    uint256 totalSupply_;
+    address public initialAddress;
 
     mapping (address => uint256) public balances_;
     mapping (address => mapping (address => uint256)) public allowances_;
@@ -17,11 +17,11 @@ contract ERC20 is IERC20 {
     event AllowanceConsumed(address indexed owner, address indexed spender, uint256 consumedAllowance);
 
     constructor (string memory _name, string memory _symbol, uint8 _decimals, uint256 _totalSupply, address _initialAddress) {
-        name_ =  _name;
-        symbol_ = _symbol;
-        decimals_ = _decimals;
+        name =  _name;
+        symbol = _symbol;
+        decimals = _decimals;
         totalSupply_ = _totalSupply;
-        initialAddress_ = _initialAddress;
+        initialAddress = _initialAddress;
 
         balances_[_initialAddress] = totalSupply_;
         emit Transfer(address(0), _initialAddress, totalSupply_);

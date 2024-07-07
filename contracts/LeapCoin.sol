@@ -6,7 +6,7 @@ import "./Ownable.sol";
 
 contract LeapCoin is ERC20, Ownable {
     constructor()
-        ERC20("LeapCoin", "LEAP", 18, 1000000 * 10 ** 18, address(this))
+        ERC20("TestLeap", "TL", 18, 1_000_000_000 * 10 ** 18, address(this))
         Ownable(msg.sender)
     {}
 
