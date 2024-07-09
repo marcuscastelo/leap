@@ -4,6 +4,7 @@
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.7",
     "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
     "@types/chai": "^4.3.16",
+    "chai": "^4.2.0",
     "hardhat": "^2.22.6",
     "viem": "^2.17.3"
   },
