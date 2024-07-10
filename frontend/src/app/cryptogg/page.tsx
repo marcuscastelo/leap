@@ -1,27 +1,18 @@
 'use client'
 
-import axios from 'axios'
 import {
-  http,
-  createConfig,
-  getBalance,
-  GetBalanceReturnType,
-  deployContract,
-  switchChain,
   waitForTransactionReceipt,
-  watchAccount,
-  GetAccountReturnType,
   readContract,
   writeContract,
 } from '@wagmi/core'
 
-import DonationRelay from '~/../../blockchain/artifacts/contracts/Donation/DonationRelay.sol/DonationRelay.json'
+import DonationRelay from '~/DonationRelay.json'
 import { useEffect, useState } from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useAccount, useDeployContract, useWatchContractEvent } from 'wagmi'
 import { arbitrumSepolia } from 'viem/chains'
 import { config } from '~/config'
-import { parseEther, parseGwei } from 'viem'
+import { parseGwei } from 'viem'
 
 export default function Page() {
   const { address } = useAccount()
@@ -32,48 +23,13 @@ export default function Page() {
     '0x118481c2742adb18df9cbcb4e99dcc9d259dac9e',
   )
 
+  const [message, setMessage] = useState('')
+
   const toAddress = '0x8522AeA1F57F447e0Ac450e8d49aF1C9B652a98C'
 
   const [marucsOwner, setMarucsOwner] = useState('Loading...')
 
   const { deployContractAsync } = useDeployContract()
-  const handleReceived = async () => {
-    const response = await axios.post(
-      'https://76bm8iyk24.execute-api.us-east-1.amazonaws.com/v1/integrations/streamlabs',
-      '',
-      {
-        params: {
-          name: 'Fishstickslol',
-          message: 'I love Fishsticks!',
-          identifier: 'fishingthesticks@gmail.com',
-          amount: 10,
-          currency: 'USD',
-        },
-        headers: {
-          accept: 'application/json, text/plain, */*',
-          'accept-language': 'en-US,en;q=0.8',
-          authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhYnJpZXVsd0BnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoie1wiTmFtZVwiOlwiR2FicmllbCBBbHZlc1wiLFwiRW1haWxcIjpcImdhYnJpZXVsd0BnbWFpbC5jb21cIixcIklkXCI6Mzk5MDJ9IiwibmJmIjoxNzIwNTQ3Mjg3LCJleHAiOjE3MjMxMzkyODcsImlhdCI6MTcyMDU0NzI4N30.S3tnQ_wG55YfHfAAkecch70bzgAsSGVxXxQ-9DrR8l0',
-          'content-length': '0',
-          origin: 'https://pixgg.com',
-          priority: 'u=1, i',
-          referer: 'https://pixgg.com/',
-          'sec-ch-ua':
-            '"Not/A)Brand";v="8", "Chromium";v="126", "Brave";v="126"',
-          'sec-ch-ua-mobile': '?0',
-          'sec-ch-ua-platform': '"Windows"',
-          'sec-fetch-dest': 'empty',
-          'sec-fetch-mode': 'cors',
-          'sec-fetch-site': 'cross-site',
-          'sec-gpc': '1',
-          'user-agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-        },
-      },
-    )
-
-    console.log(response)
-  }
 
   const deployContract = async () => {
     const hash = await deployContractAsync({
@@ -168,6 +124,7 @@ export default function Page() {
           tokenAddress,
           timestamp,
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } = logs[0].args as any
       console.dir(sender)
       console.dir(receiver)
@@ -183,14 +140,16 @@ export default function Page() {
         Number(timestamp) * 1000,
       ).toDateString()}`
 
+      new Audio().play()
       console.log(logMessage)
-      alert(logMessage)
+      setMessage(logMessage)
     },
   })
 
   if (address === undefined) {
     return (
       <div>
+        {message && <p>{message}</p>}
         <ConnectButton showBalance={false} />
       </div>
     )
@@ -198,6 +157,7 @@ export default function Page() {
 
   return (
     <div>
+      {message && <p>{message}</p>}
       <ConnectButton showBalance={false} />
 
       {(contractAddress !== EMPTY && (
