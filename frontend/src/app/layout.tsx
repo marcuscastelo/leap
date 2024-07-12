@@ -8,6 +8,7 @@ import { WagmiProvider } from 'wagmi'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { config } from '~/config'
 import { arbitrum } from 'viem/chains'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const queryClient = new QueryClient()
 
@@ -21,17 +22,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <WagmiProvider config={config}>
-          <QueryClientProvider client={queryClient}>
-            <RainbowKitProvider
-              modalSize="compact"
-              theme={darkTheme()}
-              initialChain={arbitrum}
-            >
-              {children}
-            </RainbowKitProvider>
-          </QueryClientProvider>
-        </WagmiProvider>
+        <GoogleOAuthProvider clientId={'TODO'}>
+          <WagmiProvider config={config}>
+            <QueryClientProvider client={queryClient}>
+              <RainbowKitProvider
+                modalSize="compact"
+                theme={darkTheme()}
+                initialChain={arbitrum}
+              >
+                {children}
+              </RainbowKitProvider>
+            </QueryClientProvider>
+          </WagmiProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   )
