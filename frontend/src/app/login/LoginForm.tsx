@@ -22,6 +22,7 @@ export function LoginForm() {
               className="w-64"
               type="text"
               placeholder="Username"
+              disabled={pending}
             />
             {state.error?.email && (
               <div className="text-red-500 text-sm">{state.error.email}</div>
@@ -31,6 +32,7 @@ export function LoginForm() {
               className="w-64"
               type="password"
               placeholder="Password"
+              disabled={pending}
             />
             {state.error?.password && (
               <div className="text-red-500 text-sm">{state.error.password}</div>

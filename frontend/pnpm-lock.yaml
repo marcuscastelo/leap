@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@radix-ui/react-icons':
+        specifier: ^1.3.0
+        version: 1.3.0(react@19.0.0-rc-df5f2736-20240712)
       '@rainbow-me/rainbowkit':
         specifier: ^2.1.3
         version: 2.1.3(@tanstack/react-query@5.50.1(react@19.0.0-rc-df5f2736-20240712))(@types/react@18.3.3)(react-dom@19.0.0-rc-df5f2736-20240712(react@19.0.0-rc-df5f2736-20240712))(react@19.0.0-rc-df5f2736-20240712)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.5.3)(utf-8-validate@5.0.10)(zod@3.23.8))(wagmi@2.10.10(@tanstack/query-core@5.50.1)(@tanstack/react-query@5.50.1(react@19.0.0-rc-df5f2736-20240712))(@types/react@18.3.3)(bufferutil@4.0.8)(react-dom@19.0.0-rc-df5f2736-20240712(react@19.0.0-rc-df5f2736-20240712))(react-native@0.74.3(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(react@19.0.0-rc-df5f2736-20240712)(utf-8-validate@5.0.10))(react@19.0.0-rc-df5f2736-20240712)(typescript@5.5.3)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.5.3)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8))
@@ -20,6 +23,9 @@ importers:
       '@wagmi/core':
         specifier: ^2.11.6
         version: 2.11.7(@tanstack/query-core@5.50.1)(@types/react@18.3.3)(bufferutil@4.0.8)(react@19.0.0-rc-df5f2736-20240712)(typescript@5.5.3)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.5.3)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -35,6 +41,9 @@ importers:
       tailwind-merge:
         specifier: ^2.4.0
         version: 2.4.0
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.4)
       viem:
         specifier: ~2.17.3
         version: 2.17.3(bufferutil@4.0.8)(typescript@5.5.3)(utf-8-validate@5.0.10)(zod@3.23.8)
@@ -1373,6 +1382,11 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
+  '@radix-ui/react-icons@1.3.0':
+    resolution: {integrity: sha512-jQxj/0LKgp+j9BiTXz3O3sgs26RNet2iLWmsPyRz2SIcR4q/4SbazXfnYwbAr+vLYKSfc7qxzyGQA1HLlYiuNw==}
+    peerDependencies:
+      react: ^16.x || ^17.x || ^18.x
+
   '@rainbow-me/rainbowkit@2.1.3':
     resolution: {integrity: sha512-teeB0HVQR75xSOUqMWCI0m6JJ/TvYXmbDSMr252/oElkV2UF0m/FFKGW04MBtQOg6wo9WK3nD5HVNEola4p7yA==}
     engines: {node: '>=12.4'}
@@ -2186,6 +2200,9 @@ packages:
   citty@0.1.6:
     resolution: {integrity: sha512-tskPPKEs8D2KPafUypv2gxwJP8h/OaJmC82QQGGDQcHvXX43xF2VDACcJVmZ0EuSxkpO9Kc4MlrA3q0+FG58AQ==}
 
+  class-variance-authority@0.7.0:
+    resolution: {integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==}
+
   cli-cursor@3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==}
     engines: {node: '>=8'}
@@ -2218,6 +2235,10 @@ packages:
 
   clsx@1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+
+  clsx@2.0.0:
+    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
 
   clsx@2.1.0:
@@ -4711,6 +4732,11 @@ packages:
   tailwind-merge@2.4.0:
     resolution: {integrity: sha512-49AwoOQNKdqKPd9CViyH5wJoSKsCDjUlzL8DxuGp3P1FsGY36NJDAa18jLZcaHAUUuTj+JB8IAo8zWgBNvBF7A==}
 
+  tailwindcss-animate@1.0.7:
+    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+
   tailwindcss@3.4.4:
     resolution: {integrity: sha512-ZoyXOdJjISB7/BcLTR6SEsLgKtDStYyYZVLsUtWChO4Ps20CBad7lfJKVDiejocV4ME1hLmyY0WJE3hSDcmQ2A==}
     engines: {node: '>=14.0.0'}
@@ -6812,6 +6838,10 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
+  '@radix-ui/react-icons@1.3.0(react@19.0.0-rc-df5f2736-20240712)':
+    dependencies:
+      react: 19.0.0-rc-df5f2736-20240712
+
   '@rainbow-me/rainbowkit@2.1.3(@tanstack/react-query@5.50.1(react@19.0.0-rc-df5f2736-20240712))(@types/react@18.3.3)(react-dom@19.0.0-rc-df5f2736-20240712(react@19.0.0-rc-df5f2736-20240712))(react@19.0.0-rc-df5f2736-20240712)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.5.3)(utf-8-validate@5.0.10)(zod@3.23.8))(wagmi@2.10.10(@tanstack/query-core@5.50.1)(@tanstack/react-query@5.50.1(react@19.0.0-rc-df5f2736-20240712))(@types/react@18.3.3)(bufferutil@4.0.8)(react-dom@19.0.0-rc-df5f2736-20240712(react@19.0.0-rc-df5f2736-20240712))(react-native@0.74.3(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(bufferutil@4.0.8)(react@19.0.0-rc-df5f2736-20240712)(utf-8-validate@5.0.10))(react@19.0.0-rc-df5f2736-20240712)(typescript@5.5.3)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.5.3)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8))':
     dependencies:
       '@tanstack/react-query': 5.50.1(react@19.0.0-rc-df5f2736-20240712)
@@ -8208,6 +8238,10 @@ snapshots:
     dependencies:
       consola: 3.2.3
 
+  class-variance-authority@0.7.0:
+    dependencies:
+      clsx: 2.0.0
+
   cli-cursor@3.1.0:
     dependencies:
       restore-cursor: 3.1.0
@@ -8243,6 +8277,8 @@ snapshots:
   clone@1.0.4: {}
 
   clsx@1.2.1: {}
+
+  clsx@2.0.0: {}
 
   clsx@2.1.0: {}
 
@@ -11114,6 +11150,10 @@ snapshots:
   system-architecture@0.1.0: {}
 
   tailwind-merge@2.4.0: {}
+
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.4):
+    dependencies:
+      tailwindcss: 3.4.4
 
   tailwindcss@3.4.4:
     dependencies:
