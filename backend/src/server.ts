@@ -7,6 +7,10 @@ app.get('/', (request, reply) => {
   reply.send({ hello: 'world' })
 })
 
+app.post('/auth', (request, reply) => {
+  reply.send({ token: 'abc' })
+})
+
 app.listen({ port: 3333 }).then(() => {
   console.log('Server running on port 3333')
 })

@@ -17,7 +17,6 @@ export default function Home() {
           console.log('Login Failed')
         }}
       />
-      ;
       <ConnectButton showBalance={false} />
     </div>
   )

@@ -1,16 +1,7 @@
-'use client'
 import '@rainbow-me/rainbowkit/styles.css'
 import { Inter } from 'next/font/google'
 import './globals.css'
-
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit'
-import { WagmiProvider } from 'wagmi'
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { config } from '~/config'
-import { arbitrum } from 'viem/chains'
-import { GoogleOAuthProvider } from '@react-oauth/google'
-
-const queryClient = new QueryClient()
+import { ClientSideProviders } from '~/components/ClientSideProviders'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,21 +11,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-zinc-900">
       <body className={inter.className}>
-        <GoogleOAuthProvider clientId={'TODO'}>
-          <WagmiProvider config={config}>
-            <QueryClientProvider client={queryClient}>
-              <RainbowKitProvider
-                modalSize="compact"
-                theme={darkTheme()}
-                initialChain={arbitrum}
-              >
-                {children}
-              </RainbowKitProvider>
-            </QueryClientProvider>
-          </WagmiProvider>
-        </GoogleOAuthProvider>
+        <ClientSideProviders>{children}</ClientSideProviders>
       </body>
     </html>
   )
