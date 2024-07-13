@@ -11,10 +11,97 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid())
-  slug  String @unique
-  name  String
-  email String
+  // Basic fields
+  id       String @id @default(uuid())
+  slug     String @unique
+  name     String
+  email    String
+  password String
+
+  // Relations
+  Channel      Channel[]
+  VOD          VOD[]
+  Subscription Subscription[]
+  Donation     Donation[]
 
   @@map("users")
+}
+
+model Channel {
+  // Basic fields
+  id          String @id @default(uuid())
+  slug        String @unique
+  name        String
+  description String
+  picture     String
+
+  // Relations
+  ownerId      String         @map("owner_id")
+  User         User           @relation(fields: [ownerId], references: [id])
+  Clip         Clip[]
+  Subscription Subscription[]
+  Donation     Donation[]
+
+  @@map("channels")
+}
+
+model Clip {
+  // Basic fields
+  id       String @id @default(uuid())
+  slug     String @unique
+  title    String
+  mediaUrl String @map("media_url")
+
+  // Relations
+  channelId String  @map("channel_id")
+  Channel   Channel @relation(fields: [channelId], references: [id])
+
+  @@map("clips")
+}
+
+model VOD {
+  // Basic fields
+  id    String @id @default(uuid())
+  slug  String @unique
+  title String
+
+  // Relations
+  mediaUrl String @map("media_url")
+  userId   String @map("user_id")
+  User     User   @relation(fields: [userId], references: [id])
+
+  @@map("vods")
+}
+
+model Subscription {
+  // Basic fields
+  id           String   @id @default(uuid())
+  expiresAt    DateTime @map("expires_at")
+  subscribedAt DateTime @map("subscribed_at")
+
+  // Relations
+  userId    String  @map("user_id")
+  channelId String  @map("channel_id")
+  User      User    @relation(fields: [userId], references: [id])
+  Channel   Channel @relation(fields: [channelId], references: [id])
+
+  @@map("subscriptions")
+}
+
+model Donation {
+  // Basic fields
+  id        String   @id @default(uuid())
+  message   String
+  amount    Float
+  currency  String
+  donatedAt DateTime @map("donated_at")
+  method    String // 'fiat' | 'crypto'
+
+  // Relations
+  donatorId String  @map("user_id")
+  channelId String  @map("channel_id")
+  User      User    @relation(fields: [donatorId], references: [id])
+  Channel   Channel @relation(fields: [channelId], references: [id])
+
+  @@map("donations")
 }
