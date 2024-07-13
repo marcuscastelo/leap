@@ -10,9 +10,10 @@ import { queryClient } from '~/lib/reactQuery'
 
 export function ClientSideProviders({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  env,
+}: Readonly<{ children: React.ReactNode; env: { GOOGLE_CLIENT_ID: string } }>) {
   return (
-    <GoogleOAuthProvider clientId={'TODO'}>
+    <GoogleOAuthProvider clientId={env.GOOGLE_CLIENT_ID}>
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider

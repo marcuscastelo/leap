@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ClientSideProviders } from '~/components/ClientSideProviders'
 import { cn } from '~/lib/utils'
+import { env } from '~/lib/env'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -19,7 +20,7 @@ export default function RootLayout({
           inter.variable,
         )}
       >
-        <ClientSideProviders>{children}</ClientSideProviders>
+        <ClientSideProviders env={env}>{children}</ClientSideProviders>
       </body>
     </html>
   )
