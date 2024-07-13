@@ -13,9 +13,9 @@
     "@react-oauth/google": "^0.12.1",
     "@tanstack/react-query": "^5.50.1",
     "@wagmi/core": "^2.11.6",
-    "next": "14.2.4",
-    "react": "^19.0.0-rc-c3cdbec0a7-20240708",
-    "react-dom": "^19.0.0-rc-c3cdbec0a7-20240708",
+    "next": "15.0.0-rc.0",
+    "react": "19.0.0-rc-df5f2736-20240712",
+    "react-dom": "19.0.0-rc-df5f2736-20240712",
     "viem": "~2.17.3",
     "wagmi": "^2.10.9"
   },
