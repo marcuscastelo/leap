@@ -13,7 +13,6 @@
     "@react-oauth/google": "^0.12.1",
     "@tanstack/react-query": "^5.50.1",
     "@wagmi/core": "^2.11.6",
-    "axios": "^1.7.2",
     "next": "14.2.4",
     "react": "^19.0.0-rc-c3cdbec0a7-20240708",
     "react-dom": "^19.0.0-rc-c3cdbec0a7-20240708",
