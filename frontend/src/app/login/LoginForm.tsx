@@ -1,16 +1,14 @@
 'use client'
 
-import { loginAction } from '~/actions/loginAction'
+import { loginAction } from '~/server/actions/auth'
 import { LoginFormInput } from './LoginFormInput'
 import { LoginFormButton } from './LoginFormButton'
 import { useFormState } from 'react-dom'
 
 export function LoginForm() {
   const [state, action, pending] = useFormState(loginAction, {
-    error: undefined,
+    errors: {},
   })
-
-  console.log(state)
 
   return (
     <div className="p-5">
@@ -24,8 +22,8 @@ export function LoginForm() {
               placeholder="Username"
               disabled={pending}
             />
-            {state.error?.email && (
-              <div className="text-red-500 text-sm">{state.error.email}</div>
+            {state.errors?.email && (
+              <div className="text-red-500 text-sm">{state.errors.email}</div>
             )}
             <LoginFormInput
               name="password"
@@ -34,8 +32,10 @@ export function LoginForm() {
               placeholder="Password"
               disabled={pending}
             />
-            {state.error?.password && (
-              <div className="text-red-500 text-sm">{state.error.password}</div>
+            {state.errors?.password && (
+              <div className="text-red-500 text-sm">
+                {state.errors.password}
+              </div>
             )}
             <LoginFormButton className="w-64" type="submit">
               {pending ? 'Loading...' : 'Login'}
