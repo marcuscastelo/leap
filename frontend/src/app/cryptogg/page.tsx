@@ -164,23 +164,14 @@ export default function Page() {
         <div>
           <h1>Contract Address</h1>
           <p>{contractAddress}</p>
-          <button
-            className="btn btn-primary"
-            onClick={() => setAlias('MARUCS')}
-          >
-            Set alias MARUCS
-          </button>
+          <button onClick={() => setAlias('MARUCS')}>Set alias MARUCS</button>
           <p>Owner of alias MARUCS: {marucsOwner}</p>
-          <button className="btn btn-primary" onClick={donateToAddress}>
-            Donate to {toAddress}
-          </button>
+          <button onClick={donateToAddress}>Donate to {toAddress}</button>
         </div>
       )) || (
         <div>
           <h1>Deploy a new DonationRelay contract</h1>
-          <button className="btn btn-primary" onClick={deployContract}>
-            Deploy
-          </button>
+          <button onClick={deployContract}>Deploy</button>
         </div>
       )}
     </div>

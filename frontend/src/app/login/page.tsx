@@ -1,10 +1,12 @@
+'use client'
+
 import { GoogleLogin } from '@react-oauth/google'
 import { LoginForm } from './LoginForm'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
-export default async function Page() {
+export default function Page() {
   return (
-    <div className=" w-1/2 mx-auto mt-10">
+    <div className=" mx-auto mt-10 w-1/2">
       <LoginForm />
       <GoogleLogin
         onSuccess={(credentialResponse) => {

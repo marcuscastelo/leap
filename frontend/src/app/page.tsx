@@ -8,7 +8,6 @@ import {
   NavigationMenuTrigger,
 } from '@radix-ui/react-navigation-menu'
 import {
-  CameraIcon,
   CircleIcon,
   EllipsisVerticalIcon,
   HeartIcon,

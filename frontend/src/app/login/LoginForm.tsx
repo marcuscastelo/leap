@@ -23,7 +23,7 @@ export function LoginForm() {
               disabled={pending}
             />
             {state.errors?.email && (
-              <div className="text-red-500 text-sm">{state.errors.email}</div>
+              <div className="text-sm text-red-500">{state.errors.email}</div>
             )}
             <LoginFormInput
               name="password"
@@ -33,7 +33,7 @@ export function LoginForm() {
               disabled={pending}
             />
             {state.errors?.password && (
-              <div className="text-red-500 text-sm">
+              <div className="text-sm text-red-500">
                 {state.errors.password}
               </div>
             )}
