@@ -1,23 +1,34 @@
-'use client'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '~/components/ui/navigation-menu'
 
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { GoogleLogin } from '@react-oauth/google'
-import { useAccount } from 'wagmi'
-
-export default function Home() {
-  const { address } = useAccount()
+export default async function Home() {
   return (
     <div>
-      <h1>Hello, {address}</h1>
-      <GoogleLogin
-        onSuccess={(credentialResponse) => {
-          console.dir(credentialResponse)
-        }}
-        onError={() => {
-          console.log('Login Failed')
-        }}
-      />
-      <ConnectButton showBalance={false} />
+      <aside className="w-full bg-zinc-800 flex justify-between">
+        <strong>LeapTV</strong>
+        <NavigationMenu>
+          {/* <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem> */}
+          {/* </NavigationMenuList> */}
+        </NavigationMenu>
+      </aside>
+      <main>
+        <h1>Home</h1>
+      </main>
+      <footer>
+        <p>Footer</p>
+      </footer>
     </div>
   )
 }
