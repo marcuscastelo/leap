@@ -1,27 +1,29 @@
-import fastify from 'fastify'
+// *** Deprecated in favor of WebRTC ***
 
-// Use fastify as a relay that forwards all requests to the backend
-const relay = fastify()
+// import fastify from 'fastify'
 
-const RELAY_URL = process.env.RELAY_URL ?? 'localhost:80'
+// // Use fastify as a relay that forwards all requests to the backend
+// const relay = fastify()
 
-relay.get('/', async (request, reply) => {
-  reply.send({ hello: 'world' })
-})
+// const RELAY_URL = process.env.RELAY_URL ?? 'localhost:80'
 
-relay.all('/*', async (request, reply) => {
-  console.log(`Forwarding request to ${RELAY_URL}${request.url}`)
-  const response = await fetch(`${RELAY_URL}${request.url}`, {
-    method: request.method,
-    headers: request.headers,
-    body: request.body,
-  })
-  console.log(`Received response from ${RELAY_URL}${request.url}`)
-  console.log(response)
-  reply.send(response)
-})
+// relay.get('/', async (request, reply) => {
+//   reply.send({ hello: 'world' })
+// })
 
-// Listen for incoming requests
-relay.listen({ port: process.env.PORT ?? 3000 }).then(() => {
-  console.log('Relay running on port 3000')
-})
+// relay.all('/*', async (request, reply) => {
+//   console.log(`Forwarding request to ${RELAY_URL}${request.url}`)
+//   const response = await fetch(`${RELAY_URL}${request.url}`, {
+//     method: request.method,
+//     headers: request.headers,
+//     body: request.body,
+//   })
+//   console.log(`Received response from ${RELAY_URL}${request.url}`)
+//   console.log(response)
+//   reply.send(response)
+// })
+
+// // Listen for incoming requests
+// relay.listen({ port: process.env.PORT ?? 3000 }).then(() => {
+//   console.log('Relay running on port 3000')
+// })

@@ -4,8 +4,13 @@
 // Credits: https://github.com/Glimesh/broadcast-box/blob/main/web/src/components/player/index.js
 import { createRef, useEffect, useState } from 'react'
 import { parseLinkHeader } from '@web3-storage/parse-link-header'
+import dynamic from 'next/dynamic'
 
-export function WebRTCPlayer({ streamId }: { streamId: string }) {
+export const WebRTCPlayer = dynamic(() => Promise.resolve(WebRTCPlayerImpl), {
+  ssr: false,
+})
+
+function WebRTCPlayerImpl({ streamId }: { streamId: string }) {
   const videoRef = createRef<HTMLVideoElement>()
   const [videoLayers, setVideoLayers] = useState([])
   const [mediaSrcObject, setMediaSrcObject] = useState<MediaStream | null>(null)

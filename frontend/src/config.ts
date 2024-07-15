@@ -1,10 +1,10 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit'
-import { arbitrumSepolia } from 'viem/chains'
+import { arbitrumSepolia, mainnet } from 'viem/chains'
 export const config = getDefaultConfig({
   appName: 'My RainbowKit App',
   projectId: 'be31534cd579ae9767f95a996e86c169',
   chains: [
-    // mainnet,
+    mainnet,
     // polygon,
     // optimism,
     // arbitrum,
