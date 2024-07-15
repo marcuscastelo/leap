@@ -17,11 +17,11 @@ const config: Config = {
     ping: 30,
     ping_timeout: 60,
   },
-  http: {
-    port: 80,
-    mediaroot: './media',
-    allow_origin: '*',
-  },
+  //   http: {
+  //     port: 80,
+  //     mediaroot: './media',
+  //     allow_origin: '*',
+  //   },
   trans: {
     ffmpeg: '/usr/bin/ffmpeg',
     tasks: [
