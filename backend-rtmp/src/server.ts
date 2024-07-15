@@ -22,11 +22,6 @@ const config: Config = {
     mediaroot: './media',
     allow_origin: '*',
   },
-  https: {
-    port: 443,
-    cert: '/etc/letsencrypt/live/leap-rtmp.onrender.com/fullchain.pem',
-    key: '/etc/letsencrypt/live/leap-rtmp.onrender.com/privkey.pem',
-  },
   trans: {
     ffmpeg: '/usr/bin/ffmpeg',
     tasks: [
