@@ -17,11 +17,11 @@ const config: Config = {
     ping: 30,
     ping_timeout: 60,
   },
-  //   http: {
-  //     port: 80,
-  //     mediaroot: './media',
-  //     allow_origin: '*',
-  //   },
+  http: {
+    port: 80,
+    mediaroot: './media',
+    allow_origin: '*',
+  },
   trans: {
     ffmpeg: '/usr/bin/ffmpeg',
     tasks: [
@@ -71,6 +71,10 @@ const config: Config = {
   // 	],
   // },
 }
+
+// Print the result of `ls /usr/bin/` to check if ffmpeg is installed
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+console.log(require('child_process').execSync('ls /usr/bin/').toString())
 
 const nodeMediaServer = new NodeMediaServer(config)
 nodeMediaServer.run()
