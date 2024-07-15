@@ -14,6 +14,12 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://vjs.zencdn.net/7.19.2/video-js.css"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased dark',

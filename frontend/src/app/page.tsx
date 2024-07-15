@@ -1,4 +1,7 @@
+'use client'
+
 import { AvatarIcon } from '@radix-ui/react-icons'
+import ReactHlsPlayer from 'react-hls-player'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -25,7 +28,7 @@ import { Badge, badgeVariants } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="flex h-[calc(200vh)] flex-col ">
       <header className="sticky top-0 z-10 flex h-14 w-full justify-between bg-zinc-900 py-1 shadow-md shadow-zinc-950">
@@ -111,7 +114,17 @@ export default async function Home() {
         </aside>
         <main className="flex flex-1 flex-col">
           <div className="w-full border-b border-zinc-700 bg-black">
-            <AspectRatio ratio={16 / 9}></AspectRatio>
+            <AspectRatio ratio={16 / 9}>
+              <ReactHlsPlayer
+                src="http://leaptv.ddns.net:9000/live/gary/index.m3u8"
+                autoPlay={true}
+                hlsConfig={{
+                  maxLoadingDelay: 4,
+                  minAutoBitrate: 0,
+                  lowLatencyMode: true,
+                }}
+              />
+            </AspectRatio>
           </div>
           <div className="px-4 pt-4">
             <div className="flex min-h-24 gap-4">
