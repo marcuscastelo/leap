@@ -116,7 +116,7 @@ export default function Home() {
           <div className="w-full border-b border-zinc-700 bg-black">
             <AspectRatio ratio={16 / 9}>
               <ReactHlsPlayer
-                src="http://leaptv.ddns.net:9000/live/gary/index.m3u8"
+                src="https://leaptv.ddns.net/live/gary/index.m3u8"
                 autoPlay={true}
                 hlsConfig={{
                   maxLoadingDelay: 4,
