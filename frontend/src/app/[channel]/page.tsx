@@ -25,8 +25,8 @@ import { Avatar, AvatarFallback } from '~/components/ui/avatar'
 import { Badge, badgeVariants } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
-import { WebRTCPlayer } from '~/components/livestream/WebRTCPlayer'
 import { EnsAvatar } from '~/components/web3/EnsAvatar'
+import { DebugWebRTCPlayer } from '~/components/livestream/DebugWebRTCPlayer'
 
 export default async function ChannelPage({
   params: { channel },
@@ -136,7 +136,7 @@ export default async function ChannelPage({
           <div className="w-full border-b border-zinc-700 bg-black">
             <AspectRatio ratio={16 / 9}>
               {/* <HLSPlayer /> */}
-              <WebRTCPlayer streamId={channel} />
+              <DebugWebRTCPlayer streamId={channel} />
             </AspectRatio>
           </div>
           <div className="px-4 pt-4">

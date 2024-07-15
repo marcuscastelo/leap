@@ -10,7 +10,13 @@ export const WebRTCPlayer = dynamic(() => Promise.resolve(WebRTCPlayerImpl), {
   ssr: false,
 })
 
-function WebRTCPlayerImpl({ streamId }: { streamId: string }) {
+function WebRTCPlayerImpl({
+  streamId,
+  whepAPIUrl = 'https://leaptv.ddns.net:8080/api/whep',
+}: {
+  streamId: string
+  whepAPIUrl?: string
+}) {
   const videoRef = createRef<HTMLVideoElement>()
   const [videoLayers, setVideoLayers] = useState([])
   const [mediaSrcObject, setMediaSrcObject] = useState<MediaStream | null>(null)
@@ -51,7 +57,7 @@ function WebRTCPlayerImpl({ streamId }: { streamId: string }) {
       )
       peerConnection.setLocalDescription(offer)
 
-      fetch(`https://b.siobud.com/api/whep`, {
+      fetch(whepAPIUrl, {
         method: 'POST',
         body: offer.sdp,
         headers: {
