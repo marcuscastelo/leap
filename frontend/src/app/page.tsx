@@ -25,6 +25,7 @@ import { Badge, badgeVariants } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { HLSPlayer } from '~/components/livestream/HLSPlayer'
+import { WebRTCPlayer } from '~/components/livestream/WebRTCPlayer'
 
 export default async function Home() {
   return (
@@ -113,7 +114,8 @@ export default async function Home() {
         <main className="flex flex-1 flex-col">
           <div className="w-full border-b border-zinc-700 bg-black">
             <AspectRatio ratio={16 / 9}>
-              <HLSPlayer />
+              {/* <HLSPlayer /> */}
+              <WebRTCPlayer streamId="marucs" />
             </AspectRatio>
           </div>
           <div className="px-4 pt-4">
