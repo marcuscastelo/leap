@@ -1,0 +1,8 @@
+.env
+node_modules/
+**/prisma/migrations
+**/prisma/dev.db
+.vercel
+
+media/
+*.pem
