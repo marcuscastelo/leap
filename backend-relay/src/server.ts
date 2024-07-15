@@ -5,6 +5,10 @@ const relay = fastify()
 
 const RELAY_URL = process.env.RELAY_URL ?? 'localhost:80'
 
+relay.get('/', async (request, reply) => {
+  reply.send({ hello: 'world' })
+})
+
 relay.all('/*', async (request, reply) => {
   console.log(`Forwarding request to ${RELAY_URL}${request.url}`)
   const response = await fetch(`${RELAY_URL}${request.url}`, {
