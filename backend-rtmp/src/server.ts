@@ -24,8 +24,8 @@ const config: Config = {
   },
   https: {
     port: 443,
-    cert: './fullchain.pem',
-    key: './privkey.pem',
+    cert: '/etc/letsencrypt/live/leap-rtmp.onrender.com/fullchain.pem',
+    key: '/etc/letsencrypt/live/leap-rtmp.onrender.com/privkey.pem',
   },
   trans: {
     ffmpeg: '/usr/bin/ffmpeg',
