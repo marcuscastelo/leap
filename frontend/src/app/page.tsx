@@ -7,7 +7,10 @@ export const dynamic = 'force-dynamic'
 // export const dynamic = 'force-dynamic'
 export default async function Home() {
   // TODO: homepage
-  const users = await db.query.users.findMany()
+  const users = await db.query.users.findMany({
+    orderBy: (user, { desc }) => desc(user.name),
+  })
+
   return (
     <>
       {users.map((user) => (
