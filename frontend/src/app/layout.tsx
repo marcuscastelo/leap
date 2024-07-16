@@ -1,9 +1,10 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import { Inter } from 'next/font/google'
-import './globals.css'
 import { ClientSideProviders } from '~/components/providers/ClientSideProviders'
-import { cn } from '~/lib/utils'
 import { env } from '~/lib/env'
+import { cn } from '~/lib/utils'
+import { TopNav } from './_components/TopNav'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -26,7 +27,12 @@ export default async function RootLayout({
           inter.variable,
         )}
       >
-        <ClientSideProviders env={env}>{children}</ClientSideProviders>
+        <ClientSideProviders env={env}>
+          <div className="flex h-[calc(100vh)] flex-col ">
+            <TopNav />
+            {children}
+          </div>
+        </ClientSideProviders>
       </body>
     </html>
   )
