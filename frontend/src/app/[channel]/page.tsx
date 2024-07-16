@@ -14,17 +14,14 @@ import { Avatar } from '~/components/ui/avatar'
 import { Badge, badgeVariants } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
 import { EnsAvatar } from '~/components/web3/EnsAvatar'
-import { db } from '~/server/db'
+import { getUsers } from '~/server/queries'
 
 export default async function ChannelPage({
   params: { channel },
 }: {
   params: { channel: string }
 }) {
-  const users = await db.query.users.findMany({
-    orderBy: (user, { asc }) => asc(user.name),
-  })
-
+  const users = await getUsers()
   return (
     <div className="flex w-full">
       <aside

@@ -1,15 +1,13 @@
 import { Avatar } from '~/components/ui/avatar'
 import { EnsAvatar } from '~/components/web3/EnsAvatar'
-import { db } from '~/server/db'
+import { getUsers } from '~/server/queries'
 
 export const dynamic = 'force-dynamic'
 
 // export const dynamic = 'force-dynamic'
 export default async function Home() {
   // TODO: homepage
-  const users = await db.query.users.findMany({
-    orderBy: (user, { asc }) => asc(user.name),
-  })
+  const users = await getUsers()
 
   return (
     <>
