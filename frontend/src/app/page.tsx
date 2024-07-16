@@ -3,6 +3,8 @@ import { EnsAvatar } from '~/components/web3/EnsAvatar'
 import { db } from '~/server/db'
 
 export const dynamic = 'force-dynamic'
+
+// export const dynamic = 'force-dynamic'
 export default async function Home() {
   // TODO: homepage
   const users = await db.query.users.findMany()
