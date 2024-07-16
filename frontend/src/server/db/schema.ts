@@ -1,19 +1,11 @@
-import { pgTableCreator, serial, text } from 'drizzle-orm/pg-core'
+import { boolean, integer, pgTableCreator, text } from 'drizzle-orm/pg-core'
 
 export const createTable = pgTableCreator((name) => `leaptv_${name}`)
 
 export const users = createTable('users', {
-  id: serial('id').primaryKey(),
+  id: integer('id').primaryKey(),
   name: text('name').notNull(),
-  about: text('about').notNull(),
-  banners: text('banners').notNull(), // TODO: https://masonry.desandro.com/options
-})
-
-export const userFollows = createTable('user_follows', {
-  followerId: serial('follower_id')
-    .notNull()
-    .references(() => users.id),
-  followeeId: serial('followee_id')
-    .notNull()
-    .references(() => users.id),
+  about: text('about'),
+  banners: text('banners'), // TODO: https://masonry.desandro.com/options
+  live: boolean('live').default(false),
 })

@@ -16,7 +16,7 @@ import {
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 
-export async function TopNav() {
+export async function TopNavigation() {
   return (
     <header className="sticky top-0 z-10 flex h-14 w-full justify-between bg-zinc-900 py-1 shadow-md shadow-zinc-950">
       <nav className="flex gap-4 px-4 align-middle sm:gap-x-10 ">
@@ -67,7 +67,7 @@ export async function TopNav() {
           <SearchIcon className="my-auto block " />
         </div>
         <SignedOut>
-          <SignInButton />
+          <SignInButton mode="modal" />
         </SignedOut>
         <SignedIn>
           <UserButton />

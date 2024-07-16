@@ -1,22 +1,20 @@
 'use client'
 
 import {
-  waitForTransactionReceipt,
   readContract,
+  waitForTransactionReceipt,
   writeContract,
 } from '@wagmi/core'
 
-import DonationRelay from '~/DonationRelay.json'
-import { useEffect, useState } from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useAccount, useDeployContract, useWatchContractEvent } from 'wagmi'
-import { arbitrumSepolia } from 'viem/chains'
-import { config } from '~/config'
+import { useEffect, useState } from 'react'
 import { parseGwei } from 'viem'
+import { arbitrumSepolia } from 'viem/chains'
+import { useDeployContract, useWatchContractEvent } from 'wagmi'
+import { config } from '~/config'
+import DonationRelay from '~/DonationRelay.json'
 
 export default function Page() {
-  const { address } = useAccount()
-
   const EMPTY = '0x0000000000000000000000000000000000000000'
 
   const [contractAddress, setContractAddress] = useState(
@@ -103,17 +101,6 @@ export default function Page() {
     eventName: 'DonationReceived',
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onLogs: (logs: any) => {
-      console.dir(logs)
-      console.dir(logs[0])
-      console.dir(logs[0].args)
-      console.dir(logs[0].args.sender)
-      console.dir(logs[0].args.receiver)
-      console.dir(logs[0].args.donationMessage)
-      console.dir(logs[0].args.donationMessage.message)
-      console.dir(logs[0].args.donationMessage.amount)
-      console.dir(logs[0].args.donationMessage.donationType)
-      console.dir(logs[0].args.donationMessage.tokenAddress)
-      console.dir(logs[0].args.donationMessage.timestamp)
       const {
         sender,
         receiver,
@@ -126,16 +113,7 @@ export default function Page() {
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } = logs[0].args as any
-      console.dir(sender)
-      console.dir(receiver)
-      console.dir(message)
-      console.dir(amount)
-      console.dir(donationType)
-      console.dir(tokenAddress)
-      console.dir(timestamp)
-      console.log('----')
-      console.dir(new Date(Number(timestamp) * 1000).toDateString())
-      console.log('----')
+
       const logMessage = `Donation received from ${sender} to ${receiver} with message: ${message} and amount: ${amount} ${donationType} (token address: ${tokenAddress}) at ${new Date(
         Number(timestamp) * 1000,
       ).toDateString()}`
@@ -146,14 +124,14 @@ export default function Page() {
     },
   })
 
-  if (address === undefined) {
-    return (
-      <div>
-        {message && <p>{message}</p>}
-        <ConnectButton showBalance={false} />
-      </div>
-    )
-  }
+  // if (address === undefined) {
+  //   return (
+  //     <div>
+  //       {message && <p>{message}</p>}
+  //       <ConnectButton showBalance={false} />
+  //     </div>
+  //   )
+  // }
 
   return (
     <div>

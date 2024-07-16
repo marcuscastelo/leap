@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <>
       {users.map((user) => (
-        <a href={`/${user.name}`} key={user.id} className="flex gap-1">
+        <a href={`/live/${user.name}`} key={user.id} className="flex gap-1">
           <Avatar>
             <EnsAvatar ensName={user.name} />
           </Avatar>

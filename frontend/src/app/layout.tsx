@@ -1,9 +1,11 @@
 import { ClerkProvider } from '@clerk/nextjs'
+import { dark } from '@clerk/themes'
 import '@rainbow-me/rainbowkit/styles.css'
 import { Inter } from 'next/font/google'
 import { ClientSideProviders } from '~/components/providers/ClientSideProviders'
 import { cn } from '~/lib/utils'
-import { TopNav } from './_components/TopNav'
+import { ChannelSidebar } from './_components/channel-sidebar'
+import { TopNavigation } from './_components/top-navigation'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
@@ -14,7 +16,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en">
         <head>
           <link
@@ -30,8 +32,11 @@ export default async function RootLayout({
         >
           <ClientSideProviders>
             <div className="flex h-[calc(100vh)] flex-col ">
-              <TopNav />
-              {children}
+              <TopNavigation />
+              <div className="flex w-full">
+                <ChannelSidebar />
+                <main className="flex flex-1">{children}</main>
+              </div>
             </div>
           </ClientSideProviders>
         </body>
