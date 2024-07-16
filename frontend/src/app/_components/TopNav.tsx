@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,9 +12,7 @@ import {
   EllipsisVerticalIcon,
   SearchIcon,
   TvMinimalPlay,
-  UserIcon,
 } from 'lucide-react'
-import { Avatar, AvatarFallback } from '~/components/ui/avatar'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 
@@ -67,11 +66,17 @@ export async function TopNav() {
         <div className="my-auto block sm:hidden">
           <SearchIcon className="my-auto block " />
         </div>
-        <Avatar className="my-auto">
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+        {/* <Avatar className="my-auto">
           <AvatarFallback>
             <UserIcon />
           </AvatarFallback>
-        </Avatar>
+        </Avatar> */}
       </nav>
     </header>
   )
